@@ -1,39 +1,52 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { Image } from "expo-image";
+import { IProduct } from "@/utils/types/Product";
 
 const blurhash =
   "|rF?hV%2WCj[ayj[a|j[az_NaeWBj@ayfRayfQfQM{M|azj[azf6fQfQfQIpWXofj[ayj[j[fQayWCoeoeaya}j[ayfQa{oLj?j[WVj[ayayj[fQoff7azayj[ayj[j[ayofayayayj[fQj[ayayj[ayfjj[j[ayjuayj[";
 
-export const ProductItem: React.FC = () => {
+interface Props {
+  product: IProduct;
+}
+
+export const ProductItem: React.FC<Props> = ({ product }) => {
   return (
     <View style={styles.container}>
       <Image
         style={styles.image}
         source={{
-          uri: "https://images.openfoodfacts.org/images/products/000/005/045/7236/front_en.48.400.jpg",
+          uri: product.image,
         }}
         contentFit="contain"
         contentPosition="left"
         placeholder={blurhash}
       />
       <View style={styles.infoContainer}>
-        <Text style={styles.title}>Tomato Ketchup – Heinz – 800ml</Text>
-        <Text>Carbs : 23.3 g / 100g</Text>
-        <Text
-          style={[
-            {
-              backgroundColor: "#06d6a0",
-              //color: "white",
-              alignSelf: "flex-start",
-              padding: 2,
-              paddingHorizontal: 5,
-              borderRadius: 5,
-            },
-          ]}
-        >
-          SAFE
-        </Text>
+        <Text style={styles.title}>{product.title}</Text>
+        <Text>Carbs : {product.carbs} g / 100g</Text>
+        <View style={styles.labelContainer}>
+          <Text
+            style={[
+              styles.label,
+              {
+                backgroundColor: product.isSafe ? "#06d6a0" : "#ffb700",
+              },
+            ]}
+          >
+            {product.isSafe ? "Gluten Free" : "Not Gluten Free"}
+          </Text>
+          <Text
+            style={[
+              styles.label,
+              {
+                backgroundColor: product.isHighCarb ? "#06d6a0" : "#ffb700",
+              },
+            ]}
+          >
+            {product.isHighCarb ? "High Carbs" : "Low Carbs"}
+          </Text>
+        </View>
       </View>
     </View>
   );
@@ -46,6 +59,7 @@ const styles = StyleSheet.create({
     padding: 10,
     backgroundColor: "#fefefe",
     borderRadius: 13,
+    marginBottom: 15,
   },
   image: {
     width: 100,
@@ -60,5 +74,16 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 19,
     fontWeight: "600",
+  },
+  labelContainer: {
+    flexDirection: "row",
+    gap: 5,
+  },
+  label: {
+    //color: "white",
+    alignSelf: "flex-start",
+    padding: 2,
+    paddingHorizontal: 5,
+    borderRadius: 5,
   },
 });

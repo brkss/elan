@@ -1,17 +1,17 @@
 import { View, Text, StyleSheet } from "react-native";
 
-export default function HomeScreen() {
+export default function Profile() {
   return (
     <View style={styles.container}>
-      <Text>Home</Text>
+      <Text>User Profile</Text>
     </View>
   );
 }
 
-const styles = StyleSheet.create({
+export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
     justifyContent: "center",
+    alignItems: "center",
   },
 });

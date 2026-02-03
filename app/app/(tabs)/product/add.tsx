@@ -1,9 +1,10 @@
 import { View, Text, StyleSheet } from "react-native";
+import { ScanProduct } from "@/components/Product/ScanProduct";
 
 export default function Add() {
   return (
     <View style={styles.container}>
-      <Text>Add Product Here</Text>
+      <ScanProduct />
     </View>
   );
 }

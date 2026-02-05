@@ -4,7 +4,10 @@ export default function ProductsLayout() {
   return (
     <Stack screenOptions={{ headerShown: false }}>
       <Stack.Screen name="index" options={{ title: "Products" }} />
-      <Stack.Screen name="add" options={{ title: "Add Products" }} />
+      <Stack.Screen
+        name="add"
+        options={{ title: "Add Products", presentation: "modal" }}
+      />
       <Stack.Screen
         name="[id]"
         options={{

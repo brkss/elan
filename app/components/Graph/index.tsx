@@ -32,7 +32,7 @@ export const Graph: React.FC = () => {
         width={width}
         // FIX 2: Add spacing at the end so the last label isn't cut off
         endSpacing={20}
-        initialSpacing={0} // Optional: Adds breathing room at the start
+        initialSpacing={20} // Optional: Adds breathing room at the start
         data={data}
         disableScroll={false}
         curved

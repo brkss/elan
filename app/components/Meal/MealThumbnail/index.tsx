@@ -1,84 +1,81 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { Image } from "expo-image";
-import { IProduct } from "@/utils/types/Product";
+import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 
 const blurhash =
   "|rF?hV%2WCj[ayj[a|j[az_NaeWBj@ayfRayfQfQM{M|azj[azf6fQfQfQIpWXofj[ayj[j[fQayWCoeoeaya}j[ayfQa{oLj?j[WVj[ayayj[fQoff7azayj[ayj[j[ayofayayayj[fQj[ayayj[ayfjj[j[ayjuayj[";
 
-interface Props {
-  product: IProduct;
-  view: () => void;
-}
-
-export const ProductItem: React.FC<Props> = ({ product, view }) => {
+export const MealThumbnail: React.FC = () => {
   return (
-    <TouchableOpacity style={styles.container} onPress={view}>
+    <View style={styles.container}>
       <Image
         style={styles.image}
         source={{
-          uri: product.image,
+          uri: "https://images.immediate.co.uk/production/volatile/sites/30/2021/02/Chia-pudding-1667b59.jpg?resize=768,713",
         }}
         contentFit="contain"
         contentPosition="left"
         placeholder={blurhash}
       />
-      <View style={styles.infoContainer}>
-        <Text style={styles.title}>{product.title}</Text>
-        <Text>Carbs : {product.carbs} g / 100g</Text>
+      <View style={styles.mealInfoContainer}>
+        <View>
+          <Text style={styles.mealTitle}>Breakfast 101 help</Text>
+          <Text style={styles.carbInfo}>Total Carbs : 140g</Text>
+        </View>
         <View style={styles.labelContainer}>
           <Text
             style={[
               styles.label,
               {
-                backgroundColor: product.isSafe ? "#06d6a0" : "#ffb700",
+                backgroundColor: true ? "#06d6a0" : "#ffb700",
               },
             ]}
           >
-            {product.isSafe ? "Gluten Free" : "Not Gluten Free"}
+            {true ? "High Carbs" : "Low Carbs"}
           </Text>
-          <Text
-            style={[
-              styles.label,
-              {
-                backgroundColor: product.isHighCarb ? "#06d6a0" : "#ffb700",
-              },
-            ]}
-          >
-            {product.isHighCarb ? "High Carbs" : "Low Carbs"}
-          </Text>
+          <View>
+            <FontAwesome6 name="arrow-right" size={20} color="black" />
+          </View>
         </View>
       </View>
-    </TouchableOpacity>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    width: "100%",
     flexDirection: "row",
-    padding: 10,
-    backgroundColor: "#fefefe",
-    borderRadius: 13,
-    marginBottom: 15,
+    gap: 12,
+    padding: 7,
+    paddingHorizontal: 10,
+    backgroundColor: "white",
+    borderRadius: 10,
   },
   image: {
     width: 100,
     height: 100,
     backgroundColor: "transparent",
+    borderRadius: 16,
   },
-  infoContainer: {
-    flex: 1,
-    marginLeft: 0,
+  mealInfoContainer: {
     justifyContent: "space-between",
+    paddingBottom: 5,
+    flex: 1,
   },
-  title: {
-    fontSize: 19,
-    fontWeight: "600",
+  mealTitle: {
+    fontSize: 18,
+    fontWeight: 500,
+  },
+  carbInfo: {
+    fontSize: 14,
+    fontWeight: 400,
+    marginTop: 5,
   },
   labelContainer: {
     flexDirection: "row",
     gap: 5,
+    justifyContent: "space-between",
   },
   label: {
     //color: "white",

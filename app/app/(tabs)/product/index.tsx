@@ -28,7 +28,13 @@ export default function Product() {
             />
           </View>
           {_products.map((product, key) => (
-            <ProductItem key={key} product={product} />
+            <ProductItem
+              key={key}
+              product={product}
+              view={() => {
+                router.push("/(tabs)/product/123");
+              }}
+            />
           ))}
         </ScrollView>
         {/*<Button

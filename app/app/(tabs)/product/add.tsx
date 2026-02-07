@@ -2,6 +2,7 @@ import React from "react";
 import { View, StyleSheet, TouchableOpacity, Text } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { ScanProduct } from "@/components/Product/ScanProduct";
+import { AddPoductForm } from "@/components/Product/AddProductForm";
 
 enum State {
   SCAN = "SCAN",
@@ -9,12 +10,14 @@ enum State {
 }
 
 export default function Add() {
-  const [state, setState] = React.useState<State>(State.SCAN);
+  const [state, setState] = React.useState<State>(State.MANUAL_ENTRY);
 
   return (
     <View style={styles.container}>
       {/* Scanner */}
       {state === State.SCAN && <ScanProduct />}
+      {/* Manual Form */}
+      {state === State.MANUAL_ENTRY && <AddPoductForm />}
 
       {/* Top navigation overlay */}
       <SafeAreaView style={styles.navigation} pointerEvents="box-none">
